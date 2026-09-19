@@ -7,6 +7,7 @@ import AlertDetail from './pages/AlertDetail';
 import CaseList from './pages/CaseList';
 import CaseDetail from './pages/CaseDetail';
 import AuditLog from './pages/AuditLog';
+import Ingestion from './pages/Ingestion';
 
 function RequireAuth({ children }) {
   const { auth } = useAuth();
@@ -68,6 +69,14 @@ function AppRoutes() {
         element={
           <RequireAuth>
             <Layout><AuditLog /></Layout>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/ingest"
+        element={
+          <RequireAuth>
+            <Layout><Ingestion /></Layout>
           </RequireAuth>
         }
       />
