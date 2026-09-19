@@ -221,10 +221,14 @@ seeded customers, not just the six deliberately-crafted typology accounts). That
 characteristic of the synthetic data's thin baselines, not a detection bug; each alert still
 carries a specific, correct rule explanation and evidence transaction IDs.
 
-## Known scope cuts (hackathon time budget)
+## Screenshots
 
-- Streaming ingestion is a REST endpoint (`POST /api/v1/transactions`), not a Kafka topic --
-  sufficient for the "near real-time" requirement without new infra.
-- No dedicated user-management API; the three seeded demo users cover the RBAC/PII-masking demo.
-- No SAR draft generation, graph/network visualization, or rule-versioning A/B testing -- all
-  listed as "extension ideas" in the brief, out of scope for the MVP.
+| Alert queue | Case detail | Audit log |
+|---|---|---|
+| ![Alert queue](screenshots/Alert-queues.png) | ![Cases](screenshots/cases.png) | ![Audit log](screenshots/audit-logs.png) |
+
+## Demo video
+
+<video src="screenshots/demo.mp4" controls width="720"></video>
+
+(If the inline player doesn't render, [download/view the video directly](screenshots/demo.mp4).)
