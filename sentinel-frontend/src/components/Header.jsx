@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useAuth, canSeeAuditLog, canAccessCases } from '../AuthContext';
+import { useAuth, canSeeAuditLog, canAccessCases, canIngestData } from '../AuthContext';
 
 export default function Header() {
   const { auth, logout } = useAuth();
@@ -15,6 +15,11 @@ export default function Header() {
         {canAccessCases(auth.role) && (
           <NavLink to="/cases" className={({ isActive }) => (isActive ? 'active' : '')}>
             Cases
+          </NavLink>
+        )}
+        {canIngestData(auth.role) && (
+          <NavLink to="/ingest" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Data Ingestion
           </NavLink>
         )}
         {canSeeAuditLog(auth.role) && (

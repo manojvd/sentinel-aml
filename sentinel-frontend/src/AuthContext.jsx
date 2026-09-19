@@ -43,3 +43,8 @@ export function canSeeAuditLog(role) {
 export function canAccessCases(role) {
   return role === 'ADMIN' || role === 'COMPLIANCE_ANALYST';
 }
+
+// Matches the backend's @PreAuthorize on IngestionController.
+export function canIngestData(role) {
+  return role === 'ADMIN' || role === 'COMPLIANCE_ANALYST';
+}

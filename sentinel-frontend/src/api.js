@@ -101,6 +101,33 @@ export const api = {
   getAuditLog(token, { page = 0, size = 20 } = {}) {
     return request(`/audit-log${toQuery({ page, size })}`, { token });
   },
+
+  async ingestCsv(token, kind, file) {
+    const form = new FormData();
+    form.append('file', file);
+
+    let res;
+    try {
+      res = await fetch(`${BASE_URL}/ingest/${kind}`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: form,
+      });
+    } catch {
+      throw new ApiError(
+        'Could not reach the Sentinel backend. Is it running on http://localhost:8090?',
+        0,
+        undefined,
+      );
+    }
+
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : null;
+    if (!res.ok) {
+      throw new ApiError(data?.message || res.statusText || `Request failed (${res.status})`, res.status, data?.details);
+    }
+    return data; // { accepted, rejected, errors, elapsedMillis }
+  },
 };
 
 export function describeError(err) {
